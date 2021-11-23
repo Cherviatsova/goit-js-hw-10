@@ -12,8 +12,8 @@ const countryCommonInfo = document.querySelector('.country-info');
 function showCountry() {
   fetchCountries(searchBox.value.trim())
     .then(country => {
-      countryList.innerHTML = '';
       countryCommonInfo.innerHTML = '';
+      countryList.innerHTML = '';
 
       if (country.length > 10) {
         Notify.info('Too many matches found. Please enter a more specific name.');
@@ -26,12 +26,12 @@ function showCountry() {
     .catch(showError);
 }
 
-function listCountry() {
+function listCountry(country) {
   const markup = country
     .map(({ flags, name }) => {
       return `<li class="country-list">
-        <img class="flag-list" src="${flags.svg} alt="${name.common}" width="50"/>
-        <span class="name-list">${name.common}</span>
+        <img class= "flag-list" src="${flags.svg}" alt="Flag of ${name.common}" width="50"/>
+        <span class= "name-list">${name.common}</span>
     </li>`;
     })
     .join('');
@@ -39,13 +39,13 @@ function listCountry() {
 }
 
 function infoAboutCountry([{ flags, name, capital, population, languages }]) {
-  countryCommonInfo.innerHTML = `<img src=${flags.svg} class="flags" alt="Flag of ${
+  countryCommonInfo.innerHTML = `<img src="${flags.svg}" class="flags" alt="Flag of ${
     name.official
   }" width="50"/>
     <span class="country-name">${name.official}</span>
-    <p class="info">Capital: <span class="info-span">${capital}</span></p>
-    <p class="info">Population: <span class="info-span">${population}</span></p>
-    <p class="info">Languages: <span class="info-span">${Object.values(languages).join(
+    <p class= "info">Capital: <span class="info-span">${capital}</span></p>
+    <p class= "info">Population: <span class="info-span">${population}</span></p>
+    <p class= "info">Languages: <span class="info-span">${Object.values(languages).join(
       ', ',
     )}</span></p>
     `;
